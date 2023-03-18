@@ -157,13 +157,15 @@ summary(uuu)
 
 uuu %>% filter(indicator_up == 1) %>%
   ggplot() +
-  geom_density(aes(x = price_pct)) +
-  xlim(0, 120)
+  geom_density(aes(x = price_pct), kernel = "epanechnikov") +
+  xlim(0, 150) +
+  ylim(0, 0.05)
   
 uuu %>% filter(indicator_down == 1) %>%
   ggplot() +
-  geom_density(aes(x = price_pct)) +
-  xlim(-100, 0)
+  geom_density(aes(x = price_pct), kernel = "epanechnikov") +
+  xlim(-150, 0) +
+  ylim(0, 0.05)
 
 # collapse region
 prices_from2019_median = prices_from2019 %>%
