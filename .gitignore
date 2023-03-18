@@ -1,3 +1,6 @@
+# Ignore Excel temp files
+~$*.xlsx
+
 # History files
 .Rhistory
 .Rapp.history
