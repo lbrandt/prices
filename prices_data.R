@@ -50,6 +50,7 @@ summary(prices)
 object.size(prices)
 
 
+# Save all
 save.image("../prices-files/prices_workspace.RData")
 # Reproduce bread chart
 bread = prices %>%
@@ -58,6 +59,20 @@ bread = prices %>%
 # Plot
 ggplot() +
   geom_point(aes(x = QDATE, y = price), bread)
+
+
+# Save from 2019 onwards only - for BoE
+# Restrict sample
+prices_from2019 = filter(prices, QDATE >= "2019-01-01") %>%
+  select(-c(item_id_raw, indicator_box))
+#rm(prices)
+
+filter(prices_from2019, QDATE == "2023-01-01", item_id == 210102, shop_code == 803)
+
+# Save restricted sample
+save(prices_from2019, file = "save_prices_from2019.RData")
+
+
 
 
 

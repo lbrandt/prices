@@ -51,9 +51,11 @@ prices_from2019 = filter(prices, QDATE >= "2019-01-01") %>%
 
 filter(prices_from2019, QDATE == "2023-01-01", item_id == 210102, shop_code == 803)
 
-save.image(prices_from2019_change)
+# Save restricted sample
+save(prices_from2019, file = "save_prices_from2019.RData")
 
-prices_from2019_change = prices_from2019 %>%
+
+ prices_from2019_change = prices_from2019 %>%
   group_by(item_id, region, shop_code) %>%
   arrange(QDATE) %>%
   mutate(date_last_quote   = lag(QDATE, 1),
